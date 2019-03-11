@@ -1,0 +1,240 @@
+
+// Put number of images here to build out CSS
+$images: 13;
+
+#container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.galleryContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  background: black;
+  position: relative;
+}
+
+.gallery {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.gallery input {
+  display: none;
+}
+
+.galleryImage {
+  -webkit-transition: opacity 0.25s ease-out;
+  -o-transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.gallery > img:first-of-type {
+  position: relative !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 10;
+}
+
+.arrowsContainer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 100%;
+  display: none;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  width: 100%;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.arrowsContainer img {
+  width: 100px;
+  background: white;
+  opacity: 0.4;
+  padding-bottom: 20px;
+  -webkit-transition: 0.1s ease;
+  -o-transition: 0.1s ease;
+  transition: 0.1s ease;
+}
+
+.leftArrow {
+  border-top-right-radius: 10px;
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+  padding-left: 40px;
+  padding-right: 15px;
+}
+
+.rightArrow {
+  border-top-left-radius: 10px;
+  position: absolute;
+  bottom: -20px;
+  right: -30px;
+  padding-right: 40px;
+  padding-left: 15px;
+}
+
+.leftArrow:active,
+.rightArrow:active {
+  -webkit-transform: scale(0.95, 0.95);
+  -ms-transform: scale(0.95, 0.95);
+  transform: scale(0.95, 0.95);
+}
+
+.thumbnails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 5%;
+  z-index: 30;
+  border-top: 6px solid black;
+  /*border-left: 6px solid black;*/
+}
+
+.thumbnailImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.thumbnailImage {
+  margin: 0 3px;
+  min-width: 120px;
+  max-width: 120px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.thumbnailImage:first-child {
+  border-left: 6px solid black;
+  margin-left: 0px;
+}
+.thumbnailImage:last-child {
+  border-right: 3px solid black;
+}
+
+@for $i from 1 through $images {
+  #c#{$i}:checked + #i#{$i} {
+    opacity: 1;
+  }
+}
+
+@for $i from 1 through $images {
+  #c#{$i}:checked + #i#{$i} + #arrows#{$i} {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.thumbnails label,
+.arrowsContainer label {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.thumbnails label img {
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.thumbnails label img:hover {
+  -webkit-transform: scale(1.2, 1.2);
+  -ms-transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
+}
+
+label:focus {
+  -webkit-box-shadow: 0px 0px 7px 1px rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 7px 1px rgba(255, 255, 255, 1);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background: white;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgrey;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+/*******************KEYFRAMES*******************/
+
+/******************MEDIA QUERYS******************/
+@media only screen and (max-width: 650px) {
+  .thumbnailImage {
+    margin: 0 3px;
+    min-width: 95px;
+    max-width: 95px;
+    min-height: 80px;
+    max-height: 80px;
+  }
+
+  .arrowsContainer img {
+    width: 70px;
+    background: white;
+    opacity: 0.4;
+    padding-bottom: 20px;
+    -webkit-transition: 0.1s ease;
+    -o-transition: 0.1s ease;
+    transition: 0.1s ease;
+  }
+}

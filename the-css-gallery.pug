@@ -1,0 +1,58 @@
+//- Created by James Cooper
+
+//- HTML is built out from the number of images in the array
+- const imageList = ["https://picsum.photos/1000/600","https://picsum.photos/1000/601","https://picsum.photos/1000/602","https://picsum.photos/1000/603","https://picsum.photos/1000/604","https://picsum.photos/1000/605","https://picsum.photos/1000/606","https://picsum.photos/1000/607","https://picsum.photos/1000/608","https://picsum.photos/1000/609","https://picsum.photos/500/1000", "https://picsum.photos/1000/200", "https://picsum.photos/800/800"]
+
+doctype html
+head
+  meta(charset="utf-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+  link(rel="stylesheet", href="styles.css")
+  
+body
+  div#container
+    div.galleryContainer 
+      div.gallery
+         
+         
+          //-Sets the image, id and arrows of the first image
+          input(type="radio" name="controls" id="c1" checked)
+          img(id="i1" class="galleryImage" src=imageList[0])
+          div(id="arrows1" class="arrowsContainer")
+            label(for="c"+imageList.length)
+              img(class="leftArrow" src="https://clients.contology.com/Gallery/images/angle-double-left-solid.svg")
+            label(for="c2")
+              img(class="rightArrow" src="https://clients.contology.com/Gallery/images/angle-double-right-solid.svg")
+              
+          
+            //-Loops through the array setting images, ids and classes of everything execept first and last images
+          - for (var x = 2; x < imageList.length; x++)            
+            input(type="radio" name="controls" id="c"+x)
+            img(id="i"+x class="galleryImage" src=imageList[x - 1])
+            div(id="arrows"+x class="arrowsContainer")
+              label(for="c"+(x-1))
+                img(class="leftArrow" src="https://clients.contology.com/Gallery/images/angle-double-left-solid.svg")
+              label(for="c"+(x+1))
+                img(class="rightArrow" src="https://clients.contology.com/Gallery/images/angle-double-right-solid.svg")
+                
+          
+          //-Sets the image, id and arrows of the last image     
+          input(type="radio" name="controls" id="c"+imageList.length)
+          img(id="i"+imageList.length class="galleryImage" src=imageList[imageList.length - 1])
+          div(id="arrows"+imageList.length class="arrowsContainer")
+            label(for="c"+(imageList.length - 1))
+              img(class="leftArrow" src="https://clients.contology.com/Gallery/images/angle-double-left-solid.svg")
+            label(for="c1")
+              img(class="rightArrow" src="https://clients.contology.com/Gallery/images/angle-double-right-solid.svg")
+              
+      
+      //- Uses the same array for the thumbnails.  Probably should use another array with smaller versions of the images        
+              
+      div.thumbnails
+        label(for="c1" class="thumbnailImage")
+            img(src=imageList[0] alt="")
+        - for (var x = 2; x < imageList.length; x++)
+          label(for="c"+x class="thumbnailImage")
+            img(src=imageList[x - 1] alt="")
+        label(for="c"+imageList.length class="thumbnailImage")
+            img(src=imageList[imageList.length - 1] alt="")
